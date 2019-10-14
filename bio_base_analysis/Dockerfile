@@ -82,3 +82,7 @@ RUN Rscript -e "if (!require('zCompositions')) install.packages('zCompositions',
 RUN Rscript -e "if (!require('biplotr')) devtools::install_github('mooreryan/biplotr')"
 RUN Rscript -e "if (!require('breakaway')) devtools::install_github('adw96/breakaway')"
 RUN Rscript -e "if (!require('DivNet')) devtools::install_github('adw96/DivNet')"
+
+# Tinylatex for kniting PDF docs
+RUN Rscript -e "if (!require('tinytex')) install.packages('tinytex', Ncpus = ${ncpus}, repos = 'https://cloud.r-project.org/')"
+RUN Rscript -e "tinytex::install_tinytex()"
