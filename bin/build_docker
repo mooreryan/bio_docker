@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $# -ne 3 ]]; then
+    >&2 echo "usage: ./bin/build_docker img_name img_tag dockerfile_dir"
+    exit 1
+fi
+
+img="$1"
+tag="$2"
+dir="$3"
+
+docker build -t ${img}:${tag} "${dir}" && \
+    docker tag ${img}:${tag} mooreryan/${img}:${tag} && \
+    docker login && \
+    docker push mooreryan/${img}:${tag} && \
+    tput bel
