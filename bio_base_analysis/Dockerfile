@@ -1,4 +1,4 @@
-FROM mooreryan/r_dev_base:0.2.0
+FROM mooreryan/r_dev_base:0.3.0
 
 LABEL maintainer="moorer@udel.edu"
 
@@ -35,6 +35,7 @@ RUN Rscript -e "if (!require('devtools')) install.packages('devtools', Ncpus = $
 # Then bioconductor
 RUN Rscript -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) { install.packages("BiocManager") }; BiocManager::install()'
 RUN Rscript -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) { install.packages("BiocManager") }; BiocManager::install("phyloseq")'
+RUN Rscript -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) { install.packages("BiocManager") }; BiocManager::install("qvalue")'
 
 # A whole bunch of R packages
 RUN Rscript -e "if (!require('ade4')) install.packages('ade4', Ncpus = ${ncpus}, repos = 'https://cloud.r-project.org/')"
